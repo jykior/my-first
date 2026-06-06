@@ -11,6 +11,7 @@ import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
 import org.bukkit.FireworkEffect.Type;
 import org.bukkit.World;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Firework;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -67,6 +68,8 @@ public final class Main extends JavaPlugin implements Listener {
       Path path =Path.of("firework.text");
       Files.writeString(path,"たーまやー");
       player.sendMessage(Files.readString(path));
+      
+      world.spawnEntity(player.getTargetBlock(null,5).getLocation(), EntityType.CHICKEN);
     }
     count++;
   }
