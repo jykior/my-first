@@ -1,5 +1,8 @@
 package plugin.sample;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -34,7 +37,7 @@ public final class Main extends JavaPlugin implements Listener {
    * @param e イベント
    */
   @EventHandler
-  public void onPlayerToggleSneak(PlayerToggleSneakEvent e) {
+  public void onPlayerToggleSneak(PlayerToggleSneakEvent e) throws IOException {
     // イベント発生時のプレイヤーやワールドなどの情報を変数に持つ。
     Player player = e.getPlayer();
     World world = player.getWorld();
@@ -61,6 +64,9 @@ public final class Main extends JavaPlugin implements Listener {
         // 追加した情報で再設定する。
         firework.setFireworkMeta(fireworkMeta);
       }
+      Path path =Path.of("firework.text");
+      Files.writeString(path,"たーまやー");
+      player.sendMessage(Files.readString(path));
     }
     count++;
   }
